@@ -24,10 +24,11 @@ public class MarkdownParse {
             if (openParen == -1 || closeParen == -1 || nextCloseBracket == -1 || nextCloseBracket == -1){
                 return toReturn;
             }
-            if (openParen - nextCloseBracket <= 1){
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
+            if ( (nextOpenBracket > 0) && !markdown.substring(nextOpenBracket -1, nextOpenBracket).equals("!")) {
+                if (openParen - nextCloseBracket <= 1){
+                    toReturn.add(markdown.substring(openParen + 1, closeParen));
+                }
             }
-            
             currentIndex = closeParen + 1;
         }
         return toReturn;
